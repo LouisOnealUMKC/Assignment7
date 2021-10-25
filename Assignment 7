@@ -1,0 +1,30 @@
+def openInputFile():
+    try:
+        inputFile = open(input("Enter the name of the input vehicle file ==> "))
+    except:
+        print("Could not open file")
+        openInputFile()
+
+def openOutputFile():
+    try:
+        outputFile = open(input("Enter the name of the file to output to ==> "),'w')
+    except(IOError):
+        print("There is an IO Error")
+        openOutputFile()
+
+inputFile = ""
+outputFile = ""
+values = []
+
+mpgMinimum = input('Enter the minimum mpg ==>?')
+
+openInputFile()
+openOutputFile()
+
+for line in inputFile:
+    values = line.split("\t")
+
+for i in values:
+    if(values[7] > mpgMinimum):
+        #print("{} {} {:<40}{:>10}".format(values[0],values[1],values[2],values[7]))
+        outputFile.write("{} {} {:<40}{:>10}".format(values[0],values[1],values[2],values[7]))
